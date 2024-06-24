@@ -1,0 +1,7 @@
+C:\Users\marif\source\repos\Project 002\Project 002\bin\Debug\Project 002.exe.config
+C:\Users\marif\source\repos\Project 002\Project 002\bin\Debug\Project 002.exe
+C:\Users\marif\source\repos\Project 002\Project 002\bin\Debug\Project 002.pdb
+C:\Users\marif\source\repos\Project 002\Project 002\obj\Debug\Project 002.csproj.AssemblyReference.cache
+C:\Users\marif\source\repos\Project 002\Project 002\obj\Debug\Project 002.csproj.CoreCompileInputs.cache
+C:\Users\marif\source\repos\Project 002\Project 002\obj\Debug\Project 002.exe
+C:\Users\marif\source\repos\Project 002\Project 002\obj\Debug\Project 002.pdb
