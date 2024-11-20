@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -36,10 +37,23 @@ namespace Project_002
             //Console.WriteLine(FromDate((DateTime.Now),"dddd , dd MMMM yyyy"));
             //Console.WriteLine(AuthenticateUser("user1","password1"));
             //Console.WriteLine(AuthenticateUser("user1", "password1","answer1"));
-            SendEmail("example@gmail.com", "Hi and Welcome to C#");
-            List<string> list = new List<string> { "CC1example12@gmail.com", "CC2example123@gmail.com" };
-            
-            SendEmail("example@gmail.com", "Greetng message", "Hi and Welcome to C#", list);
+            //SendEmail("example@gmail.com", "Hi and Welcome to C#");
+            //List<string> list = new List<string> { "CC1example12@gmail.com", "CC2example123@gmail.com" };
+
+            //SendEmail("example@gmail.com", "Greetng message", "Hi and Welcome to C#", list);
+            //Console.WriteLine(CalculateDiscount(1000, -20));
+            //Console.WriteLine(CalculateDiscount(800, 30, true));
+            //UploadFile("Drive:C/localDisk-A");
+            //UploadFile("Drive:C/LocalDisk-A","Image12.Jpge",DateTime.Now);
+            //ProcessPayment(1000, "Online Transaction");
+            //ProcessPayment(1000, "Online Transaction", "App Transaction",DateTime.Now);
+            //RegisterUser("User1", "Password1");
+            //RegisterUser("User1", "Password1", "example@gmail.com", "+9485612378");
+            //ReserveBook(128, 10028);
+            //ReserveBook(131,122387,DateTime.Now);
+            //Console.WriteLine(GenerateReport("Rent"));
+            //Console.WriteLine(GenerateReport("Rent", DateTime.Today.AddDays(-29),DateTime.Today));
+
 
 
 
@@ -179,11 +193,11 @@ namespace Project_002
         //Question 14
         static double Distance(double x1, double x2, double y1, double y2)
         {
-            return Math.Sqrt(Math.Pow((x1 - x2),2) + Math.Pow((y1 - y2),2));
+            return Math.Sqrt(Math.Pow((x1 - x2), 2) + Math.Pow((y1 - y2), 2));
         }
         static double Distance(double x1, double x2, double y1, double y2, double z1, double z2)
         {
-            return Math.Sqrt(Math.Pow((x1 - x2),2)+Math.Pow((y1 - y2),2)+ Math.Pow((z1-z2),2));
+            return Math.Sqrt(Math.Pow((x1 - x2), 2) + Math.Pow((y1 - y2), 2) + Math.Pow((z1 - z2), 2));
         }
 
         //Question 15
@@ -191,7 +205,7 @@ namespace Project_002
         {
             return date.ToString("MM/dd/yyyy");
         }
-        static string FromDate(DateTime date, string format) 
+        static string FromDate(DateTime date, string format)
         {
             return date.ToString(format);
         }
@@ -200,26 +214,26 @@ namespace Project_002
         //Question 16
         static bool AuthenticateUser(string username, string password)
         {
-            
+
             string[] usernames = { "user1", "user2", "user3" };
             string[] passwords = { "password1", "password2", "password3" };
 
-            
+
             for (int i = 0; i < usernames.Length; i++)
             {
                 if (usernames[i] == username && passwords[i] == password)
                 {
-                    return true; 
+                    return true;
                 }
             }
 
             return false;
         }
 
-        
+
         static bool AuthenticateUser(string username, string password, string securityAnswer)
         {
-          
+
             string[] usernames = { "user1", "user2", "user3" };
             string[] passwords = { "password1", "password2", "password3" };
             string[] securityAnswers = { "answer1", "answer2", "answer3" };
@@ -228,36 +242,142 @@ namespace Project_002
             {
                 if (usernames[i] == username && passwords[i] == password && securityAnswers[i] == securityAnswer)
                 {
-                    return true; 
+                    return true;
                 }
             }
 
-            return false; 
+            return false;
         }
         //Question 17
-        static void SendEmail(String EmailAddress, string Message) 
+        static void SendEmail(String EmailAddress, string Message)
         {
             Console.WriteLine($"Sending email to {EmailAddress}\nMessage: {Message}\n");
         }
-        static void SendEmail(string EmailAddress,string Subject, string Message, List<string> CCRecipients ) 
+        static void SendEmail(string EmailAddress, string Subject, string Message, List<string> CCRecipients)
         {
             Console.WriteLine($"Sending email to {EmailAddress}\nSubject: {Subject}\nMessage: {Message}");
             if (CCRecipients != null && CCRecipients.Count > 0)
             {
                 Console.WriteLine("CC Receptionist:");
-                foreach(var cc in CCRecipients)
+                foreach (var cc in CCRecipients)
                 {
 
-                Console.WriteLine(cc);
-                }    
+                    Console.WriteLine(cc);
+                }
             }
             Console.WriteLine();
         }
+        // Question 18
 
+        static double CalculateDiscount(Double OriginalPrice, double DiscountPercentage)
+        {
+            if (DiscountPercentage < 0 || DiscountPercentage > 100)
+            {
+                throw new ArgumentException("Discount percentage must be 0 to 100");
+            }
+            double DiscountAmount = OriginalPrice * (DiscountPercentage / 100);
+            double DiscountPrice = OriginalPrice - DiscountAmount;
+            return DiscountPrice;
+        }
+        public static double CalculateDiscount(double OriginalPrice, double flatDiscount, bool isFlatDiscount)
+        {
+            if (flatDiscount < 0)
+            {
+                throw new ArgumentException("Flat discount amount cannot be negative.");
+            }
+            if (isFlatDiscount)
+            {
+                double DiscountPrice = OriginalPrice - flatDiscount;
+                return DiscountPrice;
+            }
+            else
+            {
+                throw new ArgumentException("Invalid Opperation");
+            }
+
+
+        }
+        //Question 19
+        static void UploadFile(string FilePath)
+        {
+            Console.WriteLine($"Upload file {FilePath}");
+        }
+        static void UploadFile(string FilePath, string FileDiscription, DateTime UploadTime)
+        {
+            Console.WriteLine($"Uploding File From: {FilePath}\n File Discription: {FileDiscription}\n Uploding Time: {UploadTime}");
+        }
+
+        // Question 20
+
+        public static void ProcessPayment(double paymentAmount, string paymentMethod)
+        {
+
+            Console.WriteLine($"Processing payment of Rs{paymentAmount}\nTransation Metod:{paymentMethod}");
+
+        }
+        public static void ProcessPayment(double paymentAmount, string paymentMethod, string paymentDetails, DateTime TransactionTime)
+        {
+
+            Console.WriteLine($"Processing payment of Rs{paymentAmount}\nTransation Metod:{paymentMethod}\nPayment Details:{paymentDetails},\n Transaction TIme :{TransactionTime}");
+
+
+        }
+        // Question 21
+        public static bool RegisterUser(string username, string password)
+        {
+
+            Console.WriteLine($"Registering user with username: {username}\nPassword:{password}");
+
+            return true;
+        }
+
+
+        public static bool RegisterUser(string username, string password, string email, string phoneNumber)
+        {
+
+            Console.WriteLine($"Registering user with username: {username}\npassword: {password}\nemail: {email}\n phone number: {phoneNumber}");
+
+
+            return true;
+        }
+        //Question 22
+        public static bool ReserveBook(int bookId, int userId)
+        {
+
+            Console.WriteLine($"Reserving book with ID: {bookId}\n User ID:{userId}");
+
+
+            return true;
+        }
+
+
+        public static bool ReserveBook(int bookId, int userId, DateTime reservationDate)
+        {
+
+            Console.WriteLine($"Reserving book with ID: {bookId}\nUser  ID: {userId}\nDate:{reservationDate}");
+
+
+            return true;
+        }
+        // Question 23
+        public static string GenerateReport(string reportType)
+        {
+
+            string reportDetails = $"Generating {reportType} report";
+            return reportDetails;
+        }
+
+
+        public static string GenerateReport(string reportType, DateTime startDate, DateTime endDate)
+        {
+
+            string reportDetails = $"Generating {reportType} report for period: {startDate.ToShortDateString()} to {endDate.ToShortDateString()}";
+            return reportDetails;
+        }
+        //Question 24
 
     }
+
+
 }
-
-
-
 
